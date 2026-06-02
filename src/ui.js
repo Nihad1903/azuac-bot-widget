@@ -16,6 +16,7 @@ function tmpl(title){return'<style>'+cssText+'</style>'+
         '<div class="uni-chat-header-status"><span class="uni-chat-status-dot"></span>Onlayn d\u0259st\u0259k</div>'+
       '</div>'+
       '<button class="uni-chat-clear-btn" id="uni-chat-clear-btn">T\u0259mizl\u0259</button>'+
+      '<button class="uni-chat-close-btn" id="uni-chat-close-btn" aria-label="Ba\u011fla">'+IX+'</button>'+
     '</div>'+
     '<div class="uni-chat-messages" id="uni-chat-messages" role="log" aria-live="polite">'+
       '<div class="uni-chat-empty" id="uni-chat-empty">'+
@@ -46,8 +47,8 @@ export function createTypingIndicatorEl(){
   el.innerHTML='<div class="uni-chat-typing-dots"><span></span><span></span><span></span></div>';
   return el;}
 export class UIController{
-  constructor(title){this._title=title||'Chat Assistant';this.launcher=null;this.window=null;this.messages=null;this.input=null;this.sendBtn=null;this.clearBtn=null;this.emptyState=null;}
-  mount(){const h=document.createElement('div');h.id='uni-chat-root';const s=h.attachShadow({mode:'closed'});s.innerHTML=tmpl(this._title);document.body.appendChild(h);this.launcher=s.getElementById('uni-chat-launcher');this.window=s.getElementById('uni-chat-window');this.messages=s.getElementById('uni-chat-messages');this.input=s.getElementById('uni-chat-input');this.sendBtn=s.getElementById('uni-chat-send-btn');this.clearBtn=s.getElementById('uni-chat-clear-btn');this.emptyState=s.getElementById('uni-chat-empty');}
+  constructor(title){this._title=title||'Chat Assistant';this.host=null;this.launcher=null;this.window=null;this.messages=null;this.input=null;this.sendBtn=null;this.clearBtn=null;this.closeBtn=null;this.emptyState=null;}
+  mount(){const h=document.createElement('div');h.id='uni-chat-root';const s=h.attachShadow({mode:'closed'});s.innerHTML=tmpl(this._title);document.body.appendChild(h);this.host=h;this.launcher=s.getElementById('uni-chat-launcher');this.window=s.getElementById('uni-chat-window');this.messages=s.getElementById('uni-chat-messages');this.input=s.getElementById('uni-chat-input');this.sendBtn=s.getElementById('uni-chat-send-btn');this.clearBtn=s.getElementById('uni-chat-clear-btn');this.closeBtn=s.getElementById('uni-chat-close-btn');this.emptyState=s.getElementById('uni-chat-empty');}
   _createUserEl(t,d){return createUserMessageEl(t,d);}
   _createBotEl(t,d,e){return createBotMessageEl(t,d,e);}
   appendMessage(el){if(this.emptyState&&this.emptyState.parentNode===this.messages)this.emptyState.remove();this.messages.appendChild(el);this.scrollToBottom();}
