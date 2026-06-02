@@ -1,5 +1,5 @@
 const SK='uni-chat-history',MH=200;
-export const OFFLINE_MESSAGE='S\u00fcni intellekt \u0259sasl\u0131 d\u0259st\u0259k hal-haz\u0131rda \u0259l\u00e7atan deyil. Sistem \u00fcz\u0259rind\u0259 texniki i\u015fl\u0259r aparilir. Z\u0259hm\u0259t olmasa, bir qad\u0259r sonra yenid\u0259n c\u0259hd edin.';
+export const OFFLINE_MESSAGE='S\u00fcni intellekt \u0259sasl\u0131 d\u0259st\u0259k hal-haz\u0131rda \u0259l\u00e7atan deyil. Sistem \u00fcz\u0259rind\u0259 texniki i\u015fl\u0259r apar\u0131l\u0131r. Z\u0259hm\u0259t olmasa, bir qad\u0259r sonra yenid\u0259n c\u0259hd edin.';
 export function loadHistory(){try{const r=localStorage.getItem(SK);if(!r)return[];const p=JSON.parse(r);return Array.isArray(p)?p.slice(-MH):[];}catch(_){return[];}}
 export function saveHistory(h){try{localStorage.setItem(SK,JSON.stringify(h.slice(-MH)));}catch(_){}}
 export function clearHistory(){try{localStorage.removeItem(SK);}catch(_){}}
